@@ -17,12 +17,26 @@ class Solver
     }
 }
 
+
+
 class Program
 {
+    /*static double Equation(double x)
+    {
+        return x * x - 4;
+    }
+    static double Derivative(double x)
+    {
+        return x * 2;
+    }*/
+
     static void Main(string[] args)
     {
-        del equation = x => x * x - 4;//анонімна функція
+        del equation = x => x * x - 4;//анонімні функції
         del derivative = x => 2 * x;
+
+        /*del equation = new del(Equation);
+        del derivative = new del(Derivative);*/
 
         Solver solver = new Solver();
         double root = solver.Solve(equation, derivative);
