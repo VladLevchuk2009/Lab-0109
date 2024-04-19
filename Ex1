@@ -1,0 +1,32 @@
+public delegate double del(double x);
+
+class Solver
+{
+    public double Solve(del equation, del derivative, double x0 = 1)
+    {
+        double x1 = x0 - equation(x0) / derivative(x0);
+        int iterations = 0;
+
+        while (Math.Abs(x1 - x0) > 1e-6 && iterations < 1000)
+        {
+            x0 = x1;
+            x1 = x0 - equation(x0) / derivative(x0);
+            iterations++;
+        }
+        return x1;
+    }
+}
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        del equation = x => x * x - 4;//анонімна функція
+        del derivative = x => 2 * x;
+
+        Solver solver = new Solver();
+        double root = solver.Solve(equation, derivative);
+
+        Console.WriteLine($"Корінь рівняння: {root}");
+    }
+}
